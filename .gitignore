@@ -1,0 +1,44 @@
+# Logs
+*.log
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Dependencies directory
+node_modules/
+
+# IDEs and editors
+*.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# TypeScript build output
+dist/
+build/
+
+# Environment configuration
+.env
+
+# MacOS files
+.DS_Store
+
+# Docker volumes
+*.db
+*.data
+
+# Jest
+coverage/
+jest.config.js
+
+# Backup files created by certain editors
+*~
+
+# Dump files, often containing sensitive data
+*.dump
+
+# sequelize files
+sequelize.js

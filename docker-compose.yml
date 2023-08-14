@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+#  frontend:
+#    build: ./frontend
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - ./frontend:/usr/src/app # Mount the local frontend code into the container #To enable automatic code changes without rebuilding the Docker image
+  backend:
+    build: ./backend
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./backend:/usr/src/app # Mount the local backend code into the container
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - my-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+  test:
+    build: ./backend
+    command: npm run test:watch
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - db
+volumes:
+  my-db-data:

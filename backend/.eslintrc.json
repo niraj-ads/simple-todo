@@ -1,0 +1,12 @@
+{
+    "parser": "@typescript-eslint/parser", // translates the code into a format that ESLint can understand and analyze, taking into account the unique syntax of TypeScript
+    "plugins": ["@typescript-eslint"], // provides additional rules, configurations, or functionalities to ESLint, allowing it to work better with TypeScript.
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+    }
+}
+

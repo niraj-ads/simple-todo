@@ -1,0 +1,112 @@
+swagger: '2.0'
+info:
+  title: 'Task API'
+  description: 'An API for Task Management Application that allows users to create, update, and manage tasks'
+  version: '1.0.0'
+
+paths:
+  /task:
+    post:
+      summary: 'Create a new task'
+      parameters:
+        - in: 'body'
+          name: 'task'
+          schema:
+            $ref: '#/definitions/Task'
+      responses:
+        '201':
+          description: 'Task created successfully'
+          schema:
+            $ref: '#/definitions/Task'
+        '400':
+          description: 'Validation failed'
+          schema:
+            type: 'object'
+            properties:
+              error:
+                type: 'string'
+              details:
+                type: 'array'
+                items:
+                  type: 'string'
+        '500':
+          description: 'Failed to create task'
+
+  /task/getAll:
+    get:
+      summary: 'Retrieve all tasks'
+      responses:
+        '200':
+          description: 'Successfully retrieved tasks'
+          schema:
+            type: 'object'
+            properties:
+              tasks:
+                type: 'array'
+                items:
+                  $ref: '#/definitions/Task'
+        '500':
+          description: 'Failed to retrieve the tasks'
+
+  /task/{taskId}:
+    put:
+      summary: 'Update a task by ID'
+      parameters:
+        - in: 'path'
+          name: 'taskId'
+          required: true
+          type: 'integer'
+        - in: 'body'
+          name: 'task'
+          schema:
+            $ref: '#/definitions/Task'
+      responses:
+        '200':
+          description: 'Task updated successfully'
+          schema:
+            $ref: '#/definitions/Task'
+        '404':
+          description: 'Task not found or error with the body request'
+        '500':
+          description: 'Failed to update the task'
+
+    delete:
+      summary: 'Delete a task by ID'
+      parameters:
+        - in: 'path'
+          name: 'taskId'
+          required: true
+          type: 'integer'
+      responses:
+        '200':
+          description: 'Task deleted'
+        '500':
+          description: 'Failed to delete the task'
+
+definitions:
+  Task:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        description: 'Unique task identifier'
+      title:
+        type: 'string'
+        description: 'Title of the task'
+      description:
+        type: 'string'
+        description: 'Description of the task (optional)'
+      due_date:
+        type: 'string'
+        format: 'date-time'
+        description: 'Due date of the task (optional)'
+      status:
+        type: 'string'
+        description: 'Current status of the task'
+      created_at:
+        type: 'string'
+        format: 'date-time'
+      updated_at:
+        type: 'string'
+        format: 'date-time'
+
