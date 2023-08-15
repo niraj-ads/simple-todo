@@ -90,14 +90,14 @@ BACKEND_FRONTEND_URL=http://localhost:8080
 1. Navigate to the \`frontend\` directory.
 2. Install dependencies: \`npm install\`.
 3. Start the development server: \`npm start\`.
-4. Visit \`http://localhost:8080\` (or the specified port).
+4. Visit `http://localhost:8080` (or the specified port).
 
 #### Backend
 
 1. Navigate to the \`backend\` directory.
 2. Install dependencies: \`npm install\`.
 3. Start the server: \`npm start\`.
-4. Visit \`http://localhost:3000\` (or the specified port).
+4. Visit `http://localhost:3000/` (or the specified port).
 
 
 ## Documentation
