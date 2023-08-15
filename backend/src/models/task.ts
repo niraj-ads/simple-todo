@@ -1,5 +1,7 @@
 import {Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes} from 'sequelize';
 import sequelize from "../config/db";
+import {TASK_STATUSES, TASK_STATUS_VALUES} from "../constants/taskStatuses";
+
 
 // Defining the Task class extending Sequelize's Model
 // order of InferAttributes & InferCreationAttributes is important.
@@ -52,11 +54,16 @@ Task.init(
         status: {
             type: DataTypes.STRING(20),
             allowNull: false,
-            defaultValue: 'pending', // Assuming the default status
+            defaultValue: TASK_STATUSES.NOT_SET,
             validate: {
                 len: {
                     args: [0, 20],
                     msg: "Status should be between 0 and 20 characters!",
+                },
+                isValidStatus: function(value: any) {
+                    if (!TASK_STATUS_VALUES.includes(value)) {
+                        throw new Error(`Invalid status! Must be one of ${TASK_STATUS_VALUES.join(', ')}`);
+                    }
                 }
             }
         },

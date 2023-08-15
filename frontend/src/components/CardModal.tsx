@@ -4,6 +4,7 @@ import { TaskInterface } from "../interfaces/task";
 import Modal from "./Model/Modal";
 import {getDateDetails} from "../utils/date";
 import TaskForm from "./TaskForm.tsx";
+import {TASK_STATUSES} from "../constants/taskStatuses.ts";
 
 const CardModal: React.FC<{
     onClose: () => void;
@@ -15,7 +16,7 @@ const CardModal: React.FC<{
     const [description, setDescription] = useState<string | undefined>(task?.description || "");
     const [title, setTitle] = useState<string>(task?.title || "");
     const [due_date, setDueDate] = useState<string | any>(task?.due_date || "");
-    const [status, setStatus] = useState<string>("not set");
+    const [status, setStatus] = useState<string>(TASK_STATUSES.NOT_SET);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
 

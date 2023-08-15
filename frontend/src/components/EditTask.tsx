@@ -5,6 +5,7 @@ import {getDateDetails} from '../utils/date';
 import TaskForm from "./TaskForm.tsx";
 import TaskApi from "../api/task";
 import {ArrowLeftIcon, ArrowPathIcon} from '@heroicons/react/24/solid';
+import {TASK_STATUSES} from "../constants/taskStatuses.ts";
 
 
 const EditTask: React.FC = () => {
@@ -20,7 +21,7 @@ const EditTask: React.FC = () => {
                 setTitle(data.title || '');
                 setDescription(data.description || '');
                 setDueDate(data.due_date || '');
-                setStatus(data.status || 'not set');
+                setStatus(data.status || TASK_STATUSES.NOT_SET);
             }
         };
         fetchTask();

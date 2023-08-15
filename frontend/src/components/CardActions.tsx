@@ -4,6 +4,7 @@ import { CheckIcon, TrashIcon, PencilSquareIcon } from '@heroicons/react/24/soli
 import { useTasks } from '../hooks/useTasks';
 import {NavigateFunction, useNavigate} from 'react-router-dom';
 import {useTaskContext} from "../context/tasks.tsx";
+import {TASK_STATUSES} from "../constants/taskStatuses.ts";
 
 const CardActions: React.FC<{ task: TaskInterface; }> = ({ task }: {task: Partial<TaskInterface>}) => {
     const [, setTasks] = useTaskContext();
@@ -12,7 +13,7 @@ const CardActions: React.FC<{ task: TaskInterface; }> = ({ task }: {task: Partia
 
     const completeTaskHandler = async () => {
         // Update task status to 'completed' and save
-        const updatedTask: any = { ...task, status: 'completed' };
+        const updatedTask: any = { ...task, status: TASK_STATUSES.COMPLETED };
         const tasks = await updateTask(updatedTask);
         setTasks(tasks);
     };
@@ -30,7 +31,7 @@ const CardActions: React.FC<{ task: TaskInterface; }> = ({ task }: {task: Partia
         <>
             <div className={`flex border-dashed border-slate-200 dark:border-slate-700/[.3] items-center`}>
                 {
-                    task.status !== 'completed' &&
+                    task.status !== TASK_STATUSES.COMPLETED &&
                     <button onClick={completeTaskHandler} className="text-blue-600 text-sm bg-slate-100 bg-white hover:bg-slate-200 border border-slate-200 rounded-l-md font-medium px-4 py-2 inline-flex space-x-1 items-center">
                         <CheckIcon className="inline h-5 w-5" />
                     </button>

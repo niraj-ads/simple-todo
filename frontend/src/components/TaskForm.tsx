@@ -1,5 +1,6 @@
 import React from "react";
 import {getDateDetails} from "../utils/date";
+import {TASK_STATUS_OPTIONS} from "../constants/taskStatuses.ts";
 
 const TaskForm: React.FC<{
     onSubmit: (event: React.FormEvent) => void;
@@ -15,8 +16,12 @@ const TaskForm: React.FC<{
     buttonText: string;
 }> = ({ onSubmit, title, setTitle, description, setDescription, due_date, setDueDate, status, setStatus, errorMessage, buttonText }) => {
     const dueDate: Date | any = due_date ? new Date(due_date) : '';
-    const formattedDueDate: string = dueDate ? `${dueDate.getFullYear()}-${String(dueDate.getMonth() + 1).padStart(2, '0')}-${String(dueDate.getDate()).padStart(2, '0')}` : '';
-    const formattedMinDate:string = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
+    const formatDate = (date: Date | null): string => {
+        if (!date) return '';
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+    const formattedDueDate: string = formatDate(dueDate);
+    const formattedMinDate: string = formatDate(new Date());
 
     return (
         <form className="flex flex-col space-y-4" onSubmit={onSubmit}>
@@ -56,10 +61,9 @@ const TaskForm: React.FC<{
                     value={status}
                     onChange={({ target }) => setStatus(target.value)}
                 >
-                    <option value="not set">Not set</option>
-                    <option value="pending">Pending</option>
-                    <option value="on-hold">On-hold</option>
-                    <option value="completed">Completed</option>
+                    {TASK_STATUS_OPTIONS.map((option) => (
+                        <option value={option.value}>{option.label}</option>
+                    ))}
                 </select>
             </label>
             <span className={'text-right'}>

@@ -3,20 +3,21 @@ import { TaskInterface } from "../interfaces/task";
 import CardActions from "./CardActions";
 import { CalendarIcon } from '@heroicons/react/24/solid'
 import {formatDate} from "../utils/date";
+import {TASK_STATUSES} from "../constants/taskStatuses.ts";
 
 
 const Card: React.FC<{task: TaskInterface }> = ({task}) => {
     const title = task.title || 'Task'
     const description = task.description || 'You need to change the description'
-    const status = task.status || 'Not set'
+    const status = task.status || TASK_STATUSES.NOT_SET
     const dueDate = String(task.due_date)
 
     const statusColor = (status: string) => {
         switch (status.toLowerCase()) {
-            case 'completed': return 'bg-green-700';
-            case 'pending': return 'bg-yellow-700';
-            case 'on-hold': return 'bg-red-700';
-            case 'not-set': return 'bg-gray-400';
+            case TASK_STATUSES.COMPLETED: return 'bg-green-700';
+            case TASK_STATUSES.PENDING: return 'bg-yellow-700';
+            case TASK_STATUSES.ON_HOLD: return 'bg-red-700';
+            case TASK_STATUSES.NOT_SET: return 'bg-gray-400';
             default: return 'bg-blue-700';
         }
     };
