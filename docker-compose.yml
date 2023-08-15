@@ -1,20 +1,18 @@
 version: '3.8'
 
 services:
-#  frontend:
-#    build: ./frontend
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - ./frontend:/usr/src/app # Mount the local frontend code into the container #To enable automatic code changes without rebuilding the Docker image
+  frontend:
+    build: ./frontend
+    env_file:
+      - .env
+    ports:
+      - "${VITE_FRONTEND_PORT}:${VITE_FRONTEND_PORT}"
   backend:
     build: ./backend
     env_file:
       - .env
     ports:
-      - "${PORT}:${PORT}"
-    volumes:
-      - ./backend:/usr/src/app # Mount the local backend code into the container
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     depends_on:
       - db
   db:
@@ -30,8 +28,6 @@ services:
   test:
     build: ./backend
     command: npm run test:watch
-    volumes:
-      - ./backend:/usr/src/app
     depends_on:
       - db
 volumes:

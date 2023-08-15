@@ -6,7 +6,6 @@ class TaskService {
     static async retrieveTaskById(taskId: number): Promise<Task> {
         const task =  await Task.findByPk(taskId);
         if (!task) {
-            // Throwing an error object with a specific status and message
             throw { status: 404, message: 'Task not found' };
         }
         return task;

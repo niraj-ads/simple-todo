@@ -1,4 +1,4 @@
-import { Request, Response } from "express"; // Assuming Express is used
+import { Request, Response } from "express";
 import Task from "../models/task";
 import TaskService from '../services/taskService';
 import { ValidationError } from 'sequelize';
@@ -8,7 +8,7 @@ class TaskController {
         try {
             const taskData = req.body;
             const createdTask: Task = await TaskService.createTask(taskData);
-            res.status(201).json(createdTask);
+            res.status(200).json(createdTask);
         } catch (error) {
             // Handle validation error
             if (error instanceof ValidationError) {
@@ -56,6 +56,17 @@ class TaskController {
         } catch (error) {
             console.error('Error deleting the tasks:', error);
             res.status(500).json({ error: 'Failed to delete the task' });
+        }
+    }
+
+    static async getTask(req: Request, res: Response): Promise<void> {
+        try {
+            const taskId = Number(req.params.taskId);
+            const task = await TaskService.retrieveTaskById(taskId);
+            res.status(200).json(task);
+        } catch (error) {
+            console.error(`Failed to fetch the task with id:${req.params.taskId}`, error);
+            res.status(500).json({ error: `Failed to delete the task with id=${req.params.taskId}` });
         }
     }
 }

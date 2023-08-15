@@ -30,7 +30,7 @@ describe('TaskController', () => {
         const response = await request(app)
             .post('/task')
             .send(taskData)
-            .expect(201);
+            .expect(200);
         expect(response.body.title).toEqual(taskData.title);
         expect(response.body.description).toEqual(taskData.description);
         expect(response.body.status).toEqual(taskData.status);

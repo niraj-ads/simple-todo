@@ -8,10 +8,9 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import path from 'path';
 
-
 export const app: Application = express();
 
-// Enable CORS for all routes
+// Enable CORS for all domains
 app.use(cors());
 
 // Middleware for parsing incoming requests with JSON payloads
@@ -46,8 +45,8 @@ app.use(errorHandler);
 
 
 export function startServer(): void {
-    const port = Number(process.env.PORT) || 3000;
-    const host = process.env.DOMAIN || '0.0.0.0';
+    const port = Number(process.env.BACKEND_PORT) || 3000;
+    const host = process.env.BACKEND_DOMAIN || '0.0.0.0';
 
     // Synchronize all defined models to the database and run after that
     sequelize.sync()

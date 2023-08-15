@@ -7,8 +7,8 @@ WORKDIR /usr/src/app/
 # Copy everything
 COPY . .
 
-# Delete the existing node_modules & build directory
-RUN rm -rf node_modules build
+# Delete the existing node_modules directory
+RUN rm -rf node_modules
 
 # Synchronize package.json and package-lock.json
 RUN npm install --package-lock-only
@@ -17,7 +17,7 @@ RUN npm install --package-lock-only
 RUN npm install
 
 # Expose the port the app will run on
-EXPOSE 3000
+EXPOSE 8080
 
 # Command to run the application
 CMD ["npm", "start"]
