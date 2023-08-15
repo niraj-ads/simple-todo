@@ -72,3 +72,20 @@ VITE_API_BASE_URL=http://localhost:3000
 
 # Frontend client URL for backend
 BACKEND_FRONTEND_URL=http://localhost:8080
+
+
+### Running with Docker
+
+1. In the root directory, build the Docker images with `docker-compose build`.
+2. Run the Docker containers with `docker-compose up`.
+
+### Running Frontend Locally
+
+1. Navigate to the `frontend` directory.
+2. Install dependencies with `npm install`.
+3. Start the development server with `npm start`.
+4. Access the application at `http://localhost:3000` (or the port specified in your configuration).
+
+## Documentation
+
+API documentation is provided with Swagger UI and is accessible at the `/api-docs` endpoint in the backend.
