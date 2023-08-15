@@ -2,7 +2,7 @@
 
 Todo App is a task management application that includes both frontend and backend components. It is built using React.js, Node.js, Express, TypeScript, Sequelize, and Docker.
 
-## Project Structure
+## 🗃Project Structure
 
 - **/backend**: Contains all the backend code, including server configuration, routes, database connection, etc.
 - **/frontend**: Includes all the frontend code for the client-side of the application, built with React, Vite, and Tailwind CSS.
@@ -26,6 +26,8 @@ Todo App is a task management application that includes both frontend and backen
 ### Prerequisites
 
 - Node.js (v20): Make sure you have Node.js version 20 installed on your system.
+- Docker: For containerized deployment.
+
 
 
 ### Backend Packages
@@ -77,14 +79,26 @@ BACKEND_FRONTEND_URL=http://localhost:8080
 ### Running with Docker
 
 1. In the root directory, build the Docker images with `docker-compose build`.
-2. Run the Docker containers with `docker-compose up`.
+2. Run the Frontend & Backend Docker containers with `docker-compose up frontend backend`.
+3. Run Tests: Create the test database and test user, then run the test container with `docker-compose up test`.
 
-### Running Frontend Locally
 
-1. Navigate to the `frontend` directory.
-2. Install dependencies with `npm install`.
-3. Start the development server with `npm start`.
-4. Access the application at `http://localhost:3000` (or the port specified in your configuration).
+### Running the Application Locally
+
+#### Frontend
+
+1. Navigate to the \`frontend\` directory.
+2. Install dependencies: \`npm install\`.
+3. Start the development server: \`npm start\`.
+4. Visit \`http://localhost:8080\` (or the specified port).
+
+#### Backend
+
+1. Navigate to the \`backend\` directory.
+2. Install dependencies: \`npm install\`.
+3. Start the server: \`npm start\`.
+4. Visit \`http://localhost:3000\` (or the specified port).
+
 
 ## Documentation
 
