@@ -14,7 +14,7 @@ paths:
           schema:
             $ref: '#/definitions/Task'
       responses:
-        '201':
+        '200':
           description: 'Task created successfully'
           schema:
             $ref: '#/definitions/Task'
